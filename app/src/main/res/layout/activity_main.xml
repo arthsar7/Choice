@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/card1"
+        android:layout_width="173dp"
+        android:layout_height="287dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/card2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome"
+        app:srcCompat="@drawable/img" />
+
+    <ImageView
+        android:id="@+id/card3"
+        android:layout_width="173dp"
+        android:layout_height="287dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/card2"
+        app:layout_constraintTop_toBottomOf="@+id/outcome"
+        app:srcCompat="@drawable/img" />
+
+    <ImageView
+        android:id="@+id/card2"
+        android:layout_width="173dp"
+        android:layout_height="287dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome"
+        app:srcCompat="@drawable/img" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="430dp"
+        android:layout_height="230dp"
+        android:fontFamily="@font/neubau"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/first" />
+
+    <TextView
+        android:id="@+id/outcome"
+        android:layout_width="363dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="16dp"
+        android:background="?android:attr/textColorSecondary"
+        android:fontFamily="@font/neubau"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+
+        android:id="@+id/option1"
+        android:layout_width="70dp"
+        android:layout_height="120dp"
+        android:fontFamily="@font/neubau"
+        android:text="Текст1"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/card1"
+        app:layout_constraintEnd_toEndOf="@+id/card1"
+        app:layout_constraintStart_toStartOf="@+id/card1"
+        app:layout_constraintTop_toTopOf="@+id/card1" />
+
+    <TextView
+        android:id="@+id/option2"
+        android:layout_width="70dp"
+        android:layout_height="120dp"
+        android:fontFamily="@font/neubau"
+        android:text="Текст1"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/card2"
+        app:layout_constraintEnd_toStartOf="@+id/option3"
+        app:layout_constraintStart_toEndOf="@+id/option1"
+        app:layout_constraintTop_toTopOf="@+id/card2" />
+
+    <TextView
+        android:id="@+id/option3"
+        android:layout_width="70dp"
+        android:layout_height="120dp"
+        android:fontFamily="@font/neubau"
+        android:text="Текст1"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/card3"
+        app:layout_constraintEnd_toEndOf="@+id/card3"
+        app:layout_constraintStart_toStartOf="@+id/card3"
+        app:layout_constraintTop_toTopOf="@+id/card3" />
+
+    <ImageView
+        android:id="@+id/crown"
+        android:layout_width="24dp"
+        android:layout_height="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/option1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome"
+        app:layout_constraintVertical_bias="0.268"
+        app:srcCompat="@drawable/rep" />
+
+    <ImageView
+        android:id="@+id/crown2"
+        android:layout_width="24dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outcome"
+        app:srcCompat="@drawable/heath" />
+
+    <TextView
+        android:id="@+id/rep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/neubau"
+        android:textSize="22sp"
+        android:text="TextView"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/crown"
+        app:layout_constraintTop_toBottomOf="@+id/outcome" />
+
+    <TextView
+        android:id="@+id/health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/neubau"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/crown2"
+        app:layout_constraintStart_toEndOf="@+id/crown"
+        app:layout_constraintTop_toBottomOf="@+id/outcome" />
+
+
+</android.support.constraint.ConstraintLayout>
