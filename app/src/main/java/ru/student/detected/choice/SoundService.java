@@ -23,7 +23,6 @@ public class SoundService extends Service {
         player.start();
         return Service.START_NOT_STICKY;
     }
-
     public void onDestroy() {
         player.stop();
         player.release();
