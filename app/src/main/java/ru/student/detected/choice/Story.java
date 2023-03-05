@@ -14,7 +14,6 @@ public class Story {
     private final ImageView image;
     public Situation current_situation;
     public Situation story_ending, death_baron, root, bad, good;
-    public int steps = 0;
     Situation.Option[] options = {new Situation.Option("Согласиться", 0, 1, true),
             new Situation.Option("Послать", 0, -1, true),
             new Situation.Option("Вызвать на бой", 0, -2, true)};
@@ -116,7 +115,6 @@ public class Story {
         }
     }
     public void go(int num) {
-        steps++;
         current_situation = current_situation.way[num - 1];
 
     }

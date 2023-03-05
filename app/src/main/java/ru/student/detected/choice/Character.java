@@ -2,7 +2,7 @@ package ru.student.detected.choice;
 
 public class Character {
     private int health, rep;
-    private String name;
+    private final String name;
     public Character(String name, int health, int rep){
         this.name = name;
         this.health = health;
@@ -33,14 +33,11 @@ public class Character {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     public boolean isDead(){
         return health <= 0;
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -17,9 +17,14 @@ public class StatusHandler {
     private void checkStats(TextView health, TextView rep, int choice){
         character.changeHealth(story.current_situation.options[choice].dH);
         character.changeRep(story.current_situation.options[choice].dR);
+        setStats(health, rep);
+    }
+
+    public void setStats(TextView health, TextView rep) {
         rep.setText(String.valueOf(character.getRep()));
         health.setText(String.valueOf(character.getHealth()));
     }
+
     public void check(TextView health, TextView rep, int choice) {
         checkStats(health,  rep, choice);
         endOfStory = true;

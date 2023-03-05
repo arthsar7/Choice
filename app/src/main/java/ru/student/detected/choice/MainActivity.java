@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Story story;
     private ImageView image;
     private Character geralt;
+    private StatusHandler statusHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         startService(new Intent(MainActivity.this, SoundService.class));
@@ -27,17 +28,16 @@ public class MainActivity extends AppCompatActivity {
         health = findViewById(R.id.health);
         outcome = findViewById(R.id.outcome);
         options = new TextView[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3)};
-        geralt = new Character("Geralt", 100, 5);
-        rep.setText(String.valueOf(geralt.getRep()));
-        health.setText(String.valueOf(geralt.getHealth()));
         story = new Story(this, image, options, cards, outcome);
         story.update();
+        geralt = new Character("Geralt", 100, 5);
+        statusHandler = new StatusHandler(this, geralt, story);
+        statusHandler.setStats(health, rep);
         adventure();
     }
 
     private void adventure() {
         final MediaPlayer ch = MediaPlayer.create(this, R.raw.choice);
-        StatusHandler statusHandler = new StatusHandler(this, geralt, story);
         for(int i = 0; i < options.length; i ++) {
             final int choice = i;
             options[i].setOnClickListener(view -> {
@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void rise(){
         geralt.rise();
-        rep.setText(String.valueOf(geralt.getRep()));
-        health.setText(String.valueOf(geralt.getHealth()));
+        statusHandler.setStats(health, rep);
         adventure();
     }
 }
