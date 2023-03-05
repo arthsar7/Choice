@@ -39,14 +39,10 @@ public class MainActivity extends AppCompatActivity {
         final MediaPlayer ch = MediaPlayer.create(this, R.raw.choice);
         StatusHandler statusHandler = new StatusHandler(this, geralt, story);
         for(int i = 0; i < options.length; i ++) {
-            final int finalI = i;
+            final int choice = i;
             options[i].setOnClickListener(view -> {
                 ch.start();
-                geralt.changeHealth(story.current_situation.options[finalI].dH);
-                geralt.changeRep(story.current_situation.options[finalI].dR);
-                rep.setText(String.valueOf(geralt.getRep()));
-                health.setText(String.valueOf(geralt.getHealth()));
-                statusHandler.check(finalI);
+                statusHandler.check(health, rep, choice);
                 if(statusHandler.endOfStory) gameOver();
             });
         }

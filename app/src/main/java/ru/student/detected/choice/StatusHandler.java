@@ -2,6 +2,7 @@ package ru.student.detected.choice;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.widget.TextView;
 
 public class StatusHandler {
     private final Character character;
@@ -13,28 +14,31 @@ public class StatusHandler {
         this.character = character;
         this.context = context;
     }
-    public void check(int finalI) {
+    private void checkStats(TextView health, TextView rep, int choice){
+        character.changeHealth(story.current_situation.options[choice].dH);
+        character.changeRep(story.current_situation.options[choice].dR);
+        rep.setText(String.valueOf(character.getRep()));
+        health.setText(String.valueOf(character.getHealth()));
+    }
+    public void check(TextView health, TextView rep, int choice) {
+        checkStats(health,  rep, choice);
         endOfStory = true;
         if(character.isDead()){
             final MediaPlayer deathSound = MediaPlayer.create(context, R.raw.lmao);
             deathSound.start();
             story.current_situation = story.story_ending;
         }
-        else if(story.current_situation == story.start_story.way[2] && (finalI == 1)){
+        else if(story.current_situation == story.start_story.way[2] && choice == 1){
             final MediaPlayer deadBaron = MediaPlayer.create(context, R.raw.deadbaronsound);
             deadBaron.start();
             story.current_situation = story.death_baron;
         }
-        else if(story.current_situation == story.root && finalI == 0) {
-            if(character.getRep() < 7) {
-                story.current_situation = story.bad;
-            }
-            else{
-                story.current_situation = story.good;
-            }
+        else if(story.current_situation == story.root && choice == 0) {
+            story.current_situation = (character.getRep() < 7) ? story.bad : story.good;
+
         }
         else {
-            go(finalI + 1);
+            go(choice + 1);
             endOfStory = false;
         }
     }
