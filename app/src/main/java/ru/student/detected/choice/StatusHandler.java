@@ -1,4 +1,4 @@
-package ru.student.detected.choice;
+ package ru.student.detected.choice;
 
 import android.content.Context;
 import android.media.MediaPlayer;

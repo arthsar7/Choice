@@ -20,6 +20,7 @@ public class Story {
     Situation start_story = new Situation("Первая встреча", "Вы встречаете в " +
             "деревне язвительного мужчину в красных доспехах, " +
             "прозванного Кровавым Бароном. Он просит Вас найти его семью, жену Анну и дочь Тамару.", R.drawable.first, options);
+
     public Story(Context context, ImageView image, TextView[] options_v, ImageView[] cards, TextView outcome) {
         this.options_v = options_v;
         this.cards = cards;
@@ -27,12 +28,8 @@ public class Story {
         this.context = context;
         this.image = image;
 
-
         Situation.Option none = new Situation.Option("", 0, 0, false);
         Situation.Option[] endOptions = {none, new Situation.Option("Начать заново", 0, 0, true), none};
-        Situation start_story = new Situation("Первая встреча", "Вы встречаете в " +
-                "деревне язвительного мужчину в красных доспехах, " +
-                "прозванного Кровавым Бароном. Он просит Вас найти его семью, жену Анну и дочь Тамару.", R.drawable.first, options);
         Situation.Option[] options1 = {new Situation.Option("Осмотреть комнату жены", 0, 0, true),
                 new Situation.Option("Спросить про отношения в семье", 0, 0, true),
                 new Situation.Option("Осмотреть комнату дочери", 0, 0, true)};
@@ -49,6 +46,7 @@ public class Story {
                 new Situation.Option("Оскорбиться жестом и атаковать", 0, -1, true)};
         Situation.Option[] options3 = {new Situation.Option("Попытаться вырубить всех голыми кулаками", -100, -3, true),
                 new Situation.Option("Убить стальным мечом", -70, -3, true), none};
+
 
         story_ending = new Situation("Геральт умер","Вы мертвы", R.drawable.dead, endOptions);
         death_baron = new Situation("Барон мертв","Вы перебили половину замка и убили барона, вас ненавидят" +

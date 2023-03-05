@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adventure() {
+        statusHandler = new StatusHandler(this, geralt, story);
         final MediaPlayer ch = MediaPlayer.create(this, R.raw.choice);
         for(int i = 0; i < options.length; i ++) {
             final int choice = i;
