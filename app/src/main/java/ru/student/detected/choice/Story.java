@@ -114,6 +114,5 @@ public class Story {
     }
     public void go(int num) {
         current_situation = current_situation.way[num - 1];
-
     }
 }

@@ -6,13 +6,16 @@ import android.widget.TextView;
 
 public class StatusHandler {
     private final Character character;
-    private final Story story;
+    private Story story;
     private final Context context;
     public boolean endOfStory;
     public StatusHandler(Context context, Character character, Story story){
         this.story = story;
         this.character = character;
         this.context = context;
+    }
+    public void setStory(Story story){
+        this.story = story;
     }
     private void checkStats(TextView health, TextView rep, int choice){
         character.changeHealth(story.current_situation.options[choice].dH);
