@@ -1,4 +1,4 @@
- package ru.student.detected.choice;
+package ru.student.detected.choice;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -18,7 +18,6 @@ public class StatusHandler {
         this.story = story;
     }
     private void checkStats(TextView health, TextView rep, int choice){
-        character.changeHealth(story.current_situation.options[choice].dH);
         character.changeRep(story.current_situation.options[choice].dR);
         setStats(health, rep);
     }
@@ -31,15 +30,21 @@ public class StatusHandler {
     public void check(TextView health, TextView rep, int choice) {
         checkStats(health,  rep, choice);
         endOfStory = true;
-        if(character.isDead()){
-            final MediaPlayer deathSound = MediaPlayer.create(context, R.raw.lmao);
-            deathSound.start();
-            story.current_situation = story.story_ending;
-        }
-        else if(story.current_situation == story.start_story.way[2] && choice == 1){
-            final MediaPlayer deadBaron = MediaPlayer.create(context, R.raw.deadbaronsound);
-            deadBaron.start();
-            story.current_situation = story.death_baron;
+        if(story.current_situation == story.start_story.way[2]){
+            Enemy Baron = new Enemy("Baron",100);
+            Baron.setTarget(character);
+            if(choice == 1) {
+                enemyAttack(health, rep, Baron, 70);
+                final MediaPlayer deadBaron = MediaPlayer.create(context, R.raw.deadbaronsound);
+                deadBaron.start();
+                story.current_situation = story.death_baron;
+            }
+            if(choice == 0){
+                enemyAttack(health, rep, Baron, 100);
+                final MediaPlayer deathSound = MediaPlayer.create(context, R.raw.lmao);
+                deathSound.start();
+                story.current_situation = story.story_ending;
+            }
         }
         else if(story.current_situation == story.root && choice == 0) {
             story.current_situation = (character.getRep() < 7) ? story.bad : story.good;
@@ -50,6 +55,13 @@ public class StatusHandler {
             endOfStory = false;
         }
     }
+
+    private void enemyAttack(TextView health, TextView rep, Enemy Baron, int damage) {
+        Baron.setDamage(damage);
+        Baron.attackTheCharacter();
+        setStats(health, rep);
+    }
+
     private void go(int i) {
         story.go(i);
         story.update();

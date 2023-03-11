@@ -6,7 +6,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 
 public class SoundService extends Service {
-    MediaPlayer player;
+    private MediaPlayer player;
 
     @Override
     public IBinder onBind(Intent intent) {
