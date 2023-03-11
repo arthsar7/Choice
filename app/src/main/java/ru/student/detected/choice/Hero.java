@@ -12,7 +12,7 @@ public class Hero extends Human{
     }
 
     public void kill(Enemy enemy){
-        enemy.changeHealth(-100);
+        enemy.changeHealth(-enemy.getHealth());
     }
 
     public int getRep() {
