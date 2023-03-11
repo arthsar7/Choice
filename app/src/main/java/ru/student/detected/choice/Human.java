@@ -1,6 +1,6 @@
 package ru.student.detected.choice;
 
-public abstract class Human {
+public class Human {
     protected int health;
     private final String name;
     public Human(String name, int health){
