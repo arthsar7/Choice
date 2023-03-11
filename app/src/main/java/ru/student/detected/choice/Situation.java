@@ -13,11 +13,10 @@ public class Situation {
 
     static class Option{
         String text;
-        int dH, dR;
+        int dR;
         boolean isVisible;
-        Option(String text, int dH, int dR, boolean isVisible){
+        Option(String text, int dR, boolean isVisible){
             this.text = text;
-            this.dH = dH;
             this.dR = dR;
             this.isVisible = isVisible;
         }

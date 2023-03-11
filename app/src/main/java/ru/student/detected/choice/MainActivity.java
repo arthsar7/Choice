@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void adventure() {
-        statusHandler = new StatusHandler(this, geralt, story);
+        if(statusHandler.endOfStory)statusHandler.setStory(story);
         final MediaPlayer ch = MediaPlayer.create(this, R.raw.choice);
         for(int i = 0; i < options.length; i ++) {
             final int choice = i;

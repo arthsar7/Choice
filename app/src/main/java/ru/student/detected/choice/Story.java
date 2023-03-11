@@ -14,10 +14,10 @@ public class Story {
     private final ImageView image;
     public Situation current_situation;
     public Situation story_ending, death_baron, root, bad, good;
-    Situation.Option[] options = {new Situation.Option("Согласиться", 0, 1, true),
-            new Situation.Option("Послать", 0, -1, true),
-            new Situation.Option("Вызвать на бой", 0, -2, true)};
-    Situation start_story = new Situation("Первая встреча", "Вы встречаете в " +
+    public Situation.Option[] options = {new Situation.Option("Согласиться", 1, true),
+            new Situation.Option("Послать", -1, true),
+            new Situation.Option("Вызвать на бой", -2, true)};
+    public Situation start_story = new Situation("Первая встреча", "Вы встречаете в " +
             "деревне язвительного мужчину в красных доспехах, " +
             "прозванного Кровавым Бароном. Он просит Вас найти его семью, жену Анну и дочь Тамару.", R.drawable.first, options);
 
@@ -28,24 +28,24 @@ public class Story {
         this.context = context;
         this.image = image;
 
-        Situation.Option none = new Situation.Option("", 0, 0, false);
-        Situation.Option[] endOptions = {none, new Situation.Option("Начать заново", 0, 0, true), none};
-        Situation.Option[] options1 = {new Situation.Option("Осмотреть комнату жены", 0, 0, true),
-                new Situation.Option("Спросить про отношения в семье", 0, 0, true),
-                new Situation.Option("Осмотреть комнату дочери", 0, 0, true)};
-        Situation.Option[] options1_1 = {none, new Situation.Option("Рассказать барону о случившемся", 0, 1, true), none};
-        Situation.Option[] options1_1_1 = {none, new Situation.Option("Отправиться к ворожею", 0, 0, true), none};
-        Situation.Option[] options1_1_1_2 = {none, new Situation.Option("Как найти Анну?", 0, 0, true), none};
-        Situation.Option[] options1_1_1_2_2 = {new Situation.Option("Мне надо узнать, где игоша", 0, 0, true), new Situation.Option("Как снять проклятие?", 0, 0, true), none};
-        Situation.Option[] options1_2 = {new Situation.Option("Поддержать", 0, 2, true),
-                new Situation.Option("\"Ну ты и тряпка..\"", 0, -2, true),
-                new Situation.Option("Вернуться к уликам", 0, 0, true)};
-        Situation.Option[] options1_2_2 = {none, new Situation.Option("Вернуться к уликам", 0, 0, true), none};
-        Situation.Option[] options1_3 = {none, new Situation.Option("Вернуться назад", 0, 0, true), none};
-        Situation.Option[] options2 = {none, new Situation.Option("\"Я передумал, идем\"", 0, 1, true),
-                new Situation.Option("Оскорбиться жестом и атаковать", 0, -1, true)};
-        Situation.Option[] options3 = {new Situation.Option("Попытаться вырубить всех голыми кулаками", -100, -3, true),
-                new Situation.Option("Убить стальным мечом", -70, -3, true), none};
+        Situation.Option none = new Situation.Option("", 0,  false);
+        Situation.Option[] endOptions = {none, new Situation.Option("Начать заново", 0,  true), none};
+        Situation.Option[] options1 = {new Situation.Option("Осмотреть комнату жены", 0,  true),
+                new Situation.Option("Спросить про отношения в семье", 0,  true),
+                new Situation.Option("Осмотреть комнату дочери", 0,  true)};
+        Situation.Option[] options1_1 = {none, new Situation.Option("Рассказать барону о случившемся", 1,  true), none};
+        Situation.Option[] options1_1_1 = {none, new Situation.Option("Отправиться к ворожею", 0,  true), none};
+        Situation.Option[] options1_1_1_2 = {none, new Situation.Option("Как найти Анну?", 0,  true), none};
+        Situation.Option[] options1_1_1_2_2 = {new Situation.Option("Мне надо узнать, где игоша", 0,  true), new Situation.Option("Как снять проклятие?", 0, true), none};
+        Situation.Option[] options1_2 = {new Situation.Option("Поддержать", 2,  true),
+                new Situation.Option("\"Ну ты и тряпка..\"", -2,  true),
+                new Situation.Option("Вернуться к уликам", 0,  true)};
+        Situation.Option[] options1_2_2 = {none, new Situation.Option("Вернуться к уликам", 0,  true), none};
+        Situation.Option[] options1_3 = {none, new Situation.Option("Вернуться назад", 0,  true), none};
+        Situation.Option[] options2 = {none, new Situation.Option("\"Я передумал, идем\"", 0,  true),
+                new Situation.Option("Оскорбиться жестом и атаковать", -2,  true)};
+        Situation.Option[] options3 = {new Situation.Option("Попытаться вырубить всех голыми кулаками", -3,  true),
+                new Situation.Option("Убить стальным мечом", -3,  true), none};
 
 
         story_ending = new Situation("Геральт умер","Вы мертвы", R.drawable.dead, endOptions);
@@ -114,6 +114,5 @@ public class Story {
     }
     public void go(int num) {
         current_situation = current_situation.way[num - 1];
-
     }
 }
