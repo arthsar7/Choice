@@ -1,8 +1,9 @@
 package ru.student.detected.choice;
 
+
 public class Enemy extends Human{
     private int damage;
-    private Character target;
+    private static Hero target;
 
     public Enemy(String name, int health, int damage){
         super(name,health);
@@ -11,21 +12,20 @@ public class Enemy extends Human{
     public Enemy(String name, int health){
         super(name, health);
     }
-    public void attackTheCharacter(){
+    public void attackTheTarget(){
         if(!getTarget().isDead()){
             getTarget().changeHealth(-damage);
         }
     }
-
     public void setDamage(int damage) {
-        this.damage = damage;
+        this.damage = Math.max(damage, 0);
     }
 
-    public Character getTarget() {
+    public Hero getTarget() {
         return target;
     }
 
-    public void setTarget(Character target) {
-        this.target = target;
+    public static void setTarget(Hero target) {
+        Enemy.target = target;
     }
 }

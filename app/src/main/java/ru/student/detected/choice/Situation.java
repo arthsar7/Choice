@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
+
 public class Situation {
     public Situation[] way;
     public String label;
@@ -12,9 +13,9 @@ public class Situation {
     public Option[] options;
 
     static class Option{
-        String text;
-        int dR;
-        boolean isVisible;
+        public String text;
+        public int dR;
+        public boolean isVisible;
         Option(String text, int dR, boolean isVisible){
             this.text = text;
             this.dR = dR;

@@ -1,5 +1,7 @@
 package ru.student.detected.choice;
 
+import android.media.MediaPlayer;
+
 public class Human {
     protected int health;
     private final String name;
@@ -7,7 +9,9 @@ public class Human {
         this.name = name;
         this.health = health;
     }
-
+    public void yell(MediaPlayer yell){
+        yell.start();
+    }
     public void rise() {
         this.health = 100;
     }

@@ -11,11 +11,9 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private TextView[] options;
-    private ImageView[] cards;
-    private TextView outcome, rep, health;
+    private TextView rep;
+    private TextView health;
     private Story story;
-    private ImageView image;
-    private Character geralt;
     private StatusHandler statusHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +22,21 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_main);
         rep = findViewById(R.id.rep);
-        image = findViewById(R.id.image);
-        cards = new ImageView[]{findViewById(R.id.card1), findViewById(R.id.card2), findViewById(R.id.card3)};
+        ImageView image = findViewById(R.id.image);
+        ImageView[] cards = new ImageView[]{findViewById(R.id.card1), findViewById(R.id.card2), findViewById(R.id.card3)};
         health = findViewById(R.id.health);
-        outcome = findViewById(R.id.outcome);
+        TextView outcome = findViewById(R.id.outcome);
         options = new TextView[]{findViewById(R.id.option1), findViewById(R.id.option2), findViewById(R.id.option3)};
-        story = new Story(this, image, options, cards, outcome);
+        Hero geralt = new Hero("Geralt", 100, 5);
+        story = new StoryBuilder().
+                setContext(this).
+                setImage(image).
+                setOptionsView(options, cards).
+                setOutcome(outcome).
+                setHero(geralt).
+                createStory();
         story.update();
-        geralt = new Character("Geralt", 100, 5);
-        statusHandler = new StatusHandler(this, geralt, story);
+        statusHandler = new StatusHandler(this, story);
         statusHandler.setStats(health, rep);
         adventure();
     }
@@ -56,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void revive() {
-        story = new Story(this, image, options, cards, outcome);
+        story.reset();
+        statusHandler.setStats(health, rep);
         story.update();
-        rise();
+        adventure();
     }
     @Override
     protected void onResume(){
@@ -74,10 +79,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         stopService(new Intent(MainActivity.this, SoundService.class));
         super.onDestroy();
-    }
-    private void rise(){
-        geralt.rise();
-        statusHandler.setStats(health, rep);
-        adventure();
     }
 }

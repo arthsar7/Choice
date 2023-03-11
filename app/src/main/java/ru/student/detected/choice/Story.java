@@ -12,6 +12,7 @@ public class Story {
     private final TextView outcome;
     private final Context context;
     private final ImageView image;
+    private final Hero hero;
     public Situation current_situation;
     public Situation story_ending, death_baron, root, bad, good;
     public Situation.Option[] options = {new Situation.Option("Согласиться", 1, true),
@@ -21,12 +22,17 @@ public class Story {
             "деревне язвительного мужчину в красных доспехах, " +
             "прозванного Кровавым Бароном. Он просит Вас найти его семью, жену Анну и дочь Тамару.", R.drawable.first, options);
 
-    public Story(Context context, ImageView image, TextView[] options_v, ImageView[] cards, TextView outcome) {
+    Story(Context context, ImageView image, TextView[] options_v, ImageView[] cards, TextView outcome, Hero hero) {
         this.options_v = options_v;
         this.cards = cards;
         this.outcome = outcome;
         this.context = context;
         this.image = image;
+        this.hero = hero;
+
+        Enemy.setTarget(hero);
+        Enemy baron = new Enemy("Злой Барон",100, 70),
+                guards = new Enemy("Стража", 100, 30);
 
         Situation.Option none = new Situation.Option("", 0,  false);
         Situation.Option[] endOptions = {none, new Situation.Option("Начать заново", 0,  true), none};
@@ -44,7 +50,7 @@ public class Story {
         Situation.Option[] options1_3 = {none, new Situation.Option("Вернуться назад", 0,  true), none};
         Situation.Option[] options2 = {none, new Situation.Option("\"Я передумал, идем\"", 0,  true),
                 new Situation.Option("Оскорбиться жестом и атаковать", -2,  true)};
-        Situation.Option[] options3 = {new Situation.Option("Попытаться вырубить всех голыми кулаками", -3,  true),
+        Situation.Option[] options3 = {new Situation.Option("Попытаться вырубить всех голыми кулаками",  -3, true),
                 new Situation.Option("Убить стальным мечом", -3,  true), none};
 
 
@@ -55,7 +61,7 @@ public class Story {
                 " и он убивает себя", R.drawable.prediction, endOptions);
         good = new Situation("Хорошая репутация","Ворожей сообщает, что игоша поможет отыскать Анну, " +
                 "потому что «кровь всегда родную кровь найдет». Он добавляет, что игошу нужно искать в полночь у пустой могилы, " +
-                "а где захоронение должен знать барон.\n Продолжение следует...", R.drawable.prediction, endOptions);
+                "а где захоронение должен знать барон.\n Продолжение следует...", R.drawable.goodend, endOptions);
         start_story.way[0] = new Situation("Согласиться", "Кровавый Барон обещает " +
                 "Вам сведения о Цири и провожает в комнату пропавшей семьи", R.drawable.room, options1);
         start_story.way[0].way[0] =new Situation("Комната Анны", "Использовав ведьмачье чутье," +
@@ -98,6 +104,11 @@ public class Story {
         start_story.way[2].way[1] = death_baron;
         current_situation = start_story;
     }
+
+    public Hero getHero() {
+        return hero;
+    }
+
     public void update() {
         for(int i = 0; i < options_v.length; i++){
             options_v[i].setText(current_situation.options[i].text);
@@ -115,4 +126,9 @@ public class Story {
     public void go(int num) {
         current_situation = current_situation.way[num - 1];
     }
+    public void reset(){
+        current_situation = start_story;
+        hero.rise();
+    }
+
 }
